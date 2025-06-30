@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Alana 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9ec9, #ffcce6);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      padding: 10px;
+    }
+    h1 {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 3em;
+      margin-top: 30px;
+    }
+    p {
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+      font-size: 1.2em;
+    }
+    .gallery img {
+      width: 80vw;
+      max-width: 200px;
+      height: auto;
+      object-fit: cover;
+      border: 5px solid white;
+      margin: 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: inline-block;
+    }
+    .heart {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 2.5em;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+    .heart:hover {
+      transform: scale(1.3);
+    }
+    #coupons, #loveMeter, #finalLetter {
+      margin: 40px 0;
+    }
+    button {
+      background: #ff4d88;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #e6005c;
+    }
+    input[type=range] {
+      width: 300px;
+      margin-top: 20px;
+    }
+    #cuteMessage {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #daysTogether {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 40px 0 20px 0;
+      color: #fff0f6;
+      text-shadow: 1px 1px 3px #b24f7e;
+    }
+    audio {
+      margin-top: 20px;
+      max-width: 90vw;
+      width: 300px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+        margin-top: 20px;
+      }
+      p {
+        font-size: 1em;
+        padding: 0 15px;
+      }
+      #coupons button, button {
+        padding: 12px 18px;
+        font-size: 1em;
+      }
+      #loveMeter input[type=range] {
+        width: 90vw;
+      }
+      .heart {
+        font-size: 2em;
+        margin: 5px;
+      }
+      #cuteMessage {
+        font-size: 1.2em;
+        max-width: 90vw;
+      }
+      #daysTogether {
+        font-size: 1.5em;
+      }
+      .gallery img {
+        max-width: 150px;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dear Alana 💖</h1>
+
+  <p>
+    I’ve been thinking about you every second of every day. I want you to know how deeply I love you, more than words can ever express.<br>
+    I’m sorry for the times I let my actions or words hurt you. You deserve only kindness and love, and I promise to do better and be the person you can always count on.<br>
+    You are my sunshine, my best friend, my safe place, and my greatest adventure.<br>
+    I made this little website for you to remind you of all the beautiful moments we’ve shared and the countless more we’ll create together.<br>
+    Thank you for being you — so beautiful, so kind, so strong. I will always love you, more and more every single day.<br>
+    Forever yours, Pavle
+  </p>
+
+  <div class="gallery">
+    <img src="media/IMG-20250701-WA0001.jpg" alt="Memory 1" />
+    <img src="media/IMG-20250701-WA0002.jpg" alt="Memory 2" />
+    <img src="media/IMG-20250701-WA0003.jpg" alt="Memory 3" />
+    <img src="media/IMG-20250701-WA0004.jpg" alt="Memory 4" />
+    <img src="media/IMG-20250701-WA0005.jpg" alt="Memory 5" />
+  </div>
+
+  <!-- Relationship Days Counter -->
+  <div id="daysTogether">We’ve been together for <span id="daysCount">0</span> days 💖</div>
+
+  <div id="coupons">
+    <h2>Love Coupons 💌</h2>
+    <button onclick="generateCoupon()">Reveal a Coupon</button>
+    <p id="couponText"></p>
+  </div>
+
+  <div id="loveMeter">
+    <h2>How much do you love me? 💘</h2>
+    <input type="range" min="0" max="100" value="0" id="slider" />
+    <p id="loveValue"></p>
+  </div>
+
+  <div>
+    <h2>Find the Hidden Hearts 💝</h2>
+    <div id="heartsContainer"></div>
+    <div id="cuteMessage">Aww! You found all the hearts! You're truly my heart's treasure. 💖✨</div>
+  </div>
+
+  <div id="finalLetter">
+    <h2>Final Surprise ✉️</h2>
+    <button onclick="showFinalLetter()">Open Me</button>
+    <p id="letterText" style="display:none; font-size: 1.4em; margin: 20px;"></p>
+  </div>
+
+  <audio id="bgMusic" controls>
+    <source src="media/ytmp3free.cc_ed-sheeran-perfect-official-music-video-youtubemp3free.org.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // Calculate days since August 23, 2023
+    function calculateDaysTogether() {
+      const startDate = new Date(2023, 7, 23); // Months are zero-indexed: 7 = August
+      const today = new Date();
+      const diffTime = today - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById('daysCount').textContent = diffDays;
+    }
+    calculateDaysTogether();
+    setInterval(calculateDaysTogether, 1000 * 60 * 60); // Update every hour
+
+    const coupons = [
+      "One big cozy movie night (you pick the film!)",
+      "A homemade breakfast in bed",
+      "A long massage after a tough day",
+      "A whole day of doing whatever you want",
+      "A spontaneous sunset picnic"
+    ];
+
+    function generateCoupon() {
+      const random = coupons[Math.floor(Math.random() * coupons.length)];
+      document.getElementById("couponText").textContent = random;
+    }
+
+    const slider = document.getElementById("slider");
+    const loveValue = document.getElementById("loveValue");
+
+    slider.addEventListener("input", function () {
+      if (this.value < 30) {
+        loveValue.textContent = "A little... but I know you love me more! 💗";
+      } else if (this.value < 70) {
+        loveValue.textContent = "A lot! 💞";
+      } else {
+        loveValue.textContent = "To the moon and back! 🚀💖";
+      }
+    });
+
+    const compliments = [
+      "You're the most beautiful person inside and out.",
+      "Your smile makes my whole day brighter.",
+      "I love the way you laugh at my silly jokes.",
+      "You're my favorite hello and hardest goodbye.",
+      "Thank you for being my everything."
+    ];
+
+    const container = document.getElementById("heartsContainer");
+    let heartsClicked = 0;
+
+    for (let i = 0; i < 5; i++) {
+      const heart = document.createElement("span");
+      heart.textContent = "❤️";
+      heart.className = "heart";
+      heart.onclick = function () {
+        alert(compliments[i]);
+        heart.style.opacity = "0.3";
+        heartsClicked++;
+        if (heartsClicked === 5) {
+          document.getElementById("cuteMessage").style.display = "block";
+        }
+      };
+      container.appendChild(heart);
+    }
+
+    function showFinalLetter() {
+      const letterText = document.getElementById("letterText");
+      letterText.style.display = "block";
+      letterText.textContent = `
+        Alana,
+
+        Every moment with you feels like a dream I never want to wake from.
+        I promise to cherish and love you always,
+        to be patient and kind, and to make you smile every day.
+
+        You’re my heart, my soul, my everything.
+
+        Forever and always,
+        Pavle
+      `.trim();
+    }
+  </script>
+
+</body>
+</html>
